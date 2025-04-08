@@ -5,7 +5,7 @@ const { protected } = require("../middlewares/authorization");
 const { upload } = require("../middlewares/pictureaupload");
 const router = express.Router();
 
-router.get("/product", getproduct);
+router.get("/products", getproduct);
 router.post("/product", protected, upload, postproduct);
 router.post("/cart/:productid", protected, addcart);
 router.get("/cart", protected, getcart);
