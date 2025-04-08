@@ -6,7 +6,7 @@ PRODUCT ENDPOINTS
 
 1. GET ALL PRODUCTS
 Method: GET
-URL: /product
+URL: /api/product
 Access: Public
 Possible Responses:
 - 200: {"message": "Successful", "allproduct": [array_of_products]}
@@ -14,7 +14,7 @@ Possible Responses:
 
 2. CREATE PRODUCT
 Method: POST
-URL: /product
+URL: /api/product
 Access: Protected
 Request Body (form-data):
 - productname: string
