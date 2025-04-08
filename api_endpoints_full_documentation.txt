@@ -1,0 +1,137 @@
+API ENDPOINTS DOCUMENTATION
+===========================
+
+PRODUCT ENDPOINTS
+-----------------
+
+1. GET ALL PRODUCTS
+Method: GET
+URL: /product
+Access: Public
+Possible Responses:
+- 200: {"message": "Successful", "allproduct": [array_of_products]}
+- 400: {"message": "Error Occurred!!"}
+
+2. CREATE PRODUCT
+Method: POST
+URL: /product
+Access: Protected
+Request Body (form-data):
+- productname: string
+- price: number
+- category: string
+- description: string
+- stock: number
+- images: array of image files (minimum 3)
+Possible Responses:
+- 201: {"message": "product created successful"}
+- 400: {"message": "Error Occurred !!"}
+
+AUTHENTICATION ENDPOINTS
+------------------------
+
+1. REGISTER USER
+Method: POST
+URL: /registar
+Access: Public
+Request Body:
+{
+  "firstname": "",
+  "lastname": "",
+  "email": "",
+  "password": "",
+  "address": ""
+}
+Possible Responses:
+- 201: {"message": "Registration successfully"}
+- 400: {"message": "Validation error message"}
+- 500: {"message": "An Error Occurred !!"}
+
+2. USER LOGIN
+Method: POST
+URL: /login
+Access: Public
+Request Body:
+{
+  "email": "",
+  "password": ""
+}
+Possible Responses:
+- 201: {"message": "user login successfully", "token": "JWT_TOKEN", "user": {user_data}}
+- 400: {"message": "invalid email or password"}
+- 500: {"message": "Error Occurred !!"}
+
+CART & CHECKOUT ENDPOINTS
+-------------------------
+
+1. ADD TO CART
+Method: POST
+URL: /cart/:productid
+Access: Protected
+Possible Responses:
+- 201: {"message": "Product added to cart successfully"}
+- 400: {"message": "Product already in cart"}
+- 500: {"message": "Error adding to cart"}
+
+2. GET CART ITEMS
+Method: GET
+URL: /cart
+Access: Protected
+Possible Responses:
+- 200: {"cartItems": [array_of_items]}
+- 500: {"message": "Error retrieving cart items"}
+
+3. DELETE CART ITEM
+Method: DELETE
+URL: /deletecart/:cartItemId
+Access: Protected
+Possible Responses:
+- 200: {"message": "Item removed from cart"}
+- 404: {"message": "Cart item not found"}
+- 500: {"message": "Error removing item"}
+
+4. CHECKOUT
+Method: POST
+URL: /checkout
+Access: Protected
+Possible Responses:
+- 201: {"message": "Checkout successful - Your order has been created", "order": order_details}
+- 400: {"message": "No items in cart to checkout"}
+- 500: {"message": "Error occurred during checkout"}
+
+ADMIN ENDPOINTS
+---------------
+
+5. GET ALL USERS
+Method: GET
+URL: /users
+Access: Protected (Admin)
+Possible Responses:
+- 200: {"message": "all users available", "total": count, "data": [users]}
+- 400: {"message": "unauthorized login"}
+- 500: {"message": "Error Occurred !!"}
+
+6. GET SINGLE USER
+Method: GET
+URL: /users/:id
+Access: Protected (Admin)
+Possible Responses:
+- 200: {"data": user_object}
+- 400: {"message": "unauthorize login Amin Route"}
+- 404: {"message": "no user found"}
+- 500: {"message": "Error Occured !!"}
+
+7. UPDATE USER ROLE
+Method: PATCH
+URL: /users/:id
+Access: Protected (Admin)
+Request Body:
+{
+  "username": "",
+  "password": "",
+  "role": ""
+}
+Possible Responses:
+- 200: {"user": updated_user, "message": "successfuly updated user role"}
+- 400: {"message": "unauhorize login"}
+- 500: {"message": "Error updating user"}

@@ -1,0 +1,133 @@
+API ENDPOINTS DOCUMENTATION
+===========================
+
+AUTHENTICATION ENDPOINTS
+------------------------
+
+1. REGISTER USER
+Method: POST
+URL: /registar
+Access: Public
+Request Body:
+{
+  "firstname": "",
+  "lastname": "",
+  "email": "",
+  "password": "",
+  "address": ""
+}
+Possible Responses:
+- 201: {"message": "Registration successfully"}
+- 400: {"message": "Validation error message"}
+- 500: {"message": "An Error Occurred !!"}
+
+2. USER LOGIN
+Method: POST
+URL: /login
+Access: Public
+Request Body:
+{
+  "email": "",
+  "password": ""
+}
+Possible Responses:
+- 201: {"message": "user login successfully", "token": "JWT_TOKEN", "user": {user_data}}
+- 400: {"message": "invalid email or password"}
+- 500: {"message": "Error Occurred !!"}
+
+3. FORGET PASSWORD
+Method: POST
+URL: /forgetpasswords
+Access: Public
+Request Body:
+{
+  "email": ""
+}
+Possible Responses:
+- 200: {"message": "Email sent succesfully"}
+- 400: {"message": "Email Mismatch"}
+- 500: {"message": "Error Occurred !!"}
+
+4. VERIFY OTP
+Method: POST
+URL: /verifyotps
+Access: Public
+Request Body:
+{
+  "otp": ""
+}
+Possible Responses:
+- 200: {"message": "Otp verified Successful"}
+- 400: {"message": "invalid otp"}
+- 500: {"message": "Error Occurred !!"}
+
+5. RESET PASSWORD
+Method: POST
+URL: /resetpassword
+Access: Public
+Request Body:
+{
+  "newpassword": "",
+  "confirmpassword": ""
+}
+Possible Responses:
+- 200: {"message": "password changed successfully"}
+- 400: {"message": "password mismatch"}
+- 500: {"message": "Error Occurred !!"}
+
+ADMIN ENDPOINTS
+---------------
+
+6. GET ALL USERS
+Method: GET
+URL: /users
+Access: Protected (Admin)
+Possible Responses:
+- 200: {"message": "all users available", "total": count, "data": [users]}
+- 400: {"message": "unauthorized login"}
+- 500: {"message": "Error Occurred !!"}
+
+7. GET SINGLE USER
+Method: GET
+URL: /users/:id
+Access: Protected (Admin)
+Possible Responses:
+- 200: {"data": user_object}
+- 400: {"message": "unauthorize login Amin Route"}
+- 404: {"message": "no user found"}
+- 500: {"message": "Error Occured !!"}
+
+8. UPDATE USER ROLE
+Method: PATCH
+URL: /users/:id
+Access: Protected (Admin)
+Request Body:
+{
+  "username": "",
+  "password": "",
+  "role": ""
+}
+Possible Responses:
+- 200: {"user": updated_user, "message": "successfuly updated user role"}
+- 400: {"message": "unauhorize login"}
+- 500: {"message": "Error updating user"}
+
+9. ENABLE USER
+Method: PATCH
+URL: /users/:id/enable
+Access: Protected (Admin)
+Possible Responses:
+- 200: {"message": "User enabled successfully", "data": updatedUser}
+- 400: {"message": "unauthorized login"}
+- 404: {"message": "User not found"}
+- 500: {"message": "Error occurred while enabling user"}
+
+10. DISABLE USER
+Method: PATCH
+URL: /users/:id/disable
+Access: Protected (Admin)
+Possible Responses:
+- 200: {"message": "User disabled successfully", "data": updatedUser}
+- 400: {"message": "unauthorized login"}
+- 404: {"message": "User not found"}
+- 500: {"message": "Error occurred while disabling user"}
