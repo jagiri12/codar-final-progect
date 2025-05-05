@@ -4,7 +4,7 @@ const { registar,login ,forgetpasswords,verifyotps,resetpasswords,getallusers ,g
 const router = express.Router();
 
 
-router.route('/registar').post(registar)
+router.route('/register').post(registar)
 router.route("/login").post(login)
 // router.route("/adminlogin").post(adminlogin)
 router.route("/users").get(protected,getallusers)
