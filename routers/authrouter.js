@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.route('/register').post(registar)
 router.route("/login").post(login)
-// router.route("/adminlogin").post(adminlogin)
 router.route("/users").get(protected,getallusers)
 router.route("/users/:id").get(protected,getaUser)
 router.route("/users/:id").patch(protected,updateUserRole)

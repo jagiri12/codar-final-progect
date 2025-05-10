@@ -52,7 +52,7 @@ const login = async (req, res) => {
         const token = jwt.sign({ userid: checkEmail._id },process.env.SECRETPIN, {expiresIn: "6h" });
     
 
-        res.cookie("newapi", token, { httpOnly:true, expiresIn: 21490000 })
+        res.cookie("newapi", token, { httpOnly:true, maxAge: 21600000 }) 
         const data = await accountmodel.findOne({email:email})
   
         const userData = data.toObject(); // Convert to plain object
