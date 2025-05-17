@@ -1,3 +1,4 @@
+
 const orderModel = require("../models/orderModel");
 
 // Create a new order
@@ -36,7 +37,19 @@ const updateOrderStatus = async (req, res) => {
     }
 };
 
+// Fetch all orders for admin
+const getAllOrders = async (req, res) => {
+    try {
+        const orders = await orderModel.find().populate('userId', 'username email').populate('products.product', 'productname price');
+        res.status(200).json({ message: "Orders fetched successfully", data: orders });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(400).json({ message: "Error occurred while fetching orders" });
+    }
+};
+
 module.exports = {
     createOrder,
     updateOrderStatus,
+    getAllOrders,
 };
